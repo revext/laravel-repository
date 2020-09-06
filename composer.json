@@ -1,0 +1,60 @@
+{
+    "name": "revext/laravel-repository",
+    "description": "Laravel repository which utilizes Spatie QueryBuilder",
+    "keywords": [
+        "revext",
+        "laravel-repository"
+    ],
+    "homepage": "https://github.com/revext/...",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/revext/.../issues",
+        "source": "https://github.com/revext/..."
+    },
+    "authors": [
+        {
+            "name": "Gellért Guzmics",
+            "email": "guzmics.gellert@revext.com",
+            "homepage": "https://revext.com",
+            "role": "Developer/CEO"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/database": "^7.0",
+        "illuminate/http": "^7.0",
+        "illuminate/support": "^7.0",
+        "spatie/laravel-query-builder": "^2.7"
+    },
+    "require-dev": {
+        "ext-json": "*",
+        "laravel/tinker": "^2.4",
+        "orchestra/testbench": "^5.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Revext\\Repository\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Revext\\Repository\\Tests\\": "tests/src",
+            "Revext\\Repository\\Tests\\Utils\\": "tests/utils"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Revext\\Repository\\RepositoryServiceProvider"
+            ]
+        }
+    }
+}

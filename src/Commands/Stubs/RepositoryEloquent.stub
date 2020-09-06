@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Entities\{{modelClassName}};
+use Revext\Repository\Repository;
+
+class {{modelClassName}}RepositoryEloquent extends Repository implements {{modelClassName}}Repository {
+
+    protected $modelClass = {{modelClassName}}::class;
+    
+    /**
+     * Spatie QueryBuilder related appends
+     * 
+     * @var array $allowedAppends
+     */
+    protected $allowedAppends = [];
+
+    /**
+     * Spatie QueryBuilder related filters
+     * 
+     * @var array $allowedFilters
+     */
+    protected $allowedFilters = [];
+
+    /**
+     * Spatie QueryBuilder related fields
+     * 
+     * @var array $allowedFields
+     */
+    protected $allowedFields = [];
+
+    /**
+     * Spatie QueryBuilder related includes
+     * 
+     * @var array $allowedIncludes
+     */
+    protected $allowedIncludes = [];
+
+    /**
+     * Spatie QueryBuilder related sorts
+     * 
+     * @var array $allowedSorts
+     */
+    protected $allowedSorts = [];
+
+    public function boot(){
+        //Write youre boot logic here
+    }
+}
