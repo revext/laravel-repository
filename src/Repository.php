@@ -90,6 +90,8 @@ abstract class Repository implements RepositoryInterface {
     final public function __construct(Application $app){
         $this->app = $app;
         $this->makeQuery();
+
+        $this->boot();
     }
 
     /**
@@ -114,7 +116,7 @@ abstract class Repository implements RepositoryInterface {
             if(!$this->model) {
                 $this->model = new $this->modelClass;
             }
-            $this->query = QueryBuilder::for($this->model->query(), $this->request);
+            $this->query = QueryBuilder::for($this->model->query(), $this->request ?? request());
         }
 
         return $this;
