@@ -149,53 +149,71 @@ abstract class Repository implements RepositoryInterface {
      * Creates the related model
      */
     public function create($attributes = []): Model {
-        $this->resetQuery();
         $entity = $this->query->create($attributes);
+        
+        $this->resetQuery();
 
         return $entity->refresh();
     }
 
     public function update($id, $attributes = []): Model{
-        $this->resetQuery();
         $entity = $this->query->findOrFail($id);
 
         $entity->fill($attributes);
 
         $entity->save();
 
-        return $entity;
+        $this->resetQuery();
+
+        return $entity->refresh();
     }
 
     public function updateAll($attributes = [], $columns = []): Collection{
-        $this->resetQuery();
         $this->query->where($attributes)->update($columns);
 
-        return $this->findByColumns($columns);
+        $result = $this->findByColumns($columns);
+
+        $this->resetQuery();
+
+        return $result;
     }
 
     public function findById($id): Model{
+        $result = $this->query->findOrFail($id);
+
         $this->resetQuery();
-        return $this->query->findOrFail($id);
+
+        return $result;
     }
 
     public function findByColumns($columns, $paginate = false, $limit = null){
-        $this->resetQuery();
         $this->applyCriteria();
 
         $this->query->where($columns);
-        return $this->getResults($paginate, $limit);
+        $result = $this->getResults($paginate, $limit);
+        
+        $this->resetQuery();
+
+        return $result;
     }
 
     public function findFirst(){
+
+        $result = $this->query->first();
+
         $this->resetQuery();
-        return $this->query->first();
+
+        return $result;
     }
 
     public function findAll($paginate = false, $limit = null){
-        $this->resetQuery();
         $this->applyCriteria();
 
-        return $this->getResults($paginate, $limit);
+        $result = $this->getResults($paginate, $limit);
+
+        $this->resetQuery();
+
+        return $result;
     }
 
     public function delete($id){
