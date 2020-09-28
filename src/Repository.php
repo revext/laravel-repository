@@ -179,6 +179,8 @@ abstract class Repository implements RepositoryInterface {
     }
 
     public function findById($id): Model{
+        $this->applyCriteria();
+        
         $result = $this->query->findOrFail($id);
 
         $this->resetQuery();
